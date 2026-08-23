@@ -1,5 +1,6 @@
 import { BrowserRouter, NavLink, Route, Routes } from 'react-router-dom'
 import './App.css'
+import { apiOrigin, codespaceName } from './api.js'
 import Activities from './components/Activities.jsx'
 import Leaderboard from './components/Leaderboard.jsx'
 import Teams from './components/Teams.jsx'
@@ -7,6 +8,8 @@ import Users from './components/Users.jsx'
 import Workouts from './components/Workouts.jsx'
 
 function App() {
+  const apiLabel = codespaceName ? 'Codespaces API' : 'Local API'
+
   return (
     <BrowserRouter>
       <div className="app-shell">
@@ -16,7 +19,7 @@ function App() {
           <nav className="main-nav" aria-label="Main navigation">
             <NavLink to="/" end>Overview</NavLink><NavLink to="/activities">Activities</NavLink><NavLink to="/workouts">Workouts</NavLink><NavLink to="/leaderboard">Leaderboard</NavLink><NavLink to="/teams">Teams</NavLink><NavLink to="/users">Members</NavLink>
           </nav>
-          <div className="sidebar-footer"><span className="status-dot" /> API connected<br /><small>Live workspace</small></div>
+          <div className="sidebar-footer"><span className="status-dot" /> {apiLabel}<br /><small>{apiOrigin}</small></div>
         </aside>
         <main className="main-content">
           <header className="topbar"><span>Saturday, August 23, 2026</span><span className="profile-chip">OC <strong>Octo Captain</strong></span></header>
