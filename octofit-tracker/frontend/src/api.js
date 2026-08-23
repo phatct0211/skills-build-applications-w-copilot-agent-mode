@@ -3,7 +3,7 @@ export const apiOrigin = codespaceName
   ? `https://${codespaceName}-8000.app.github.dev`
   : 'http://localhost:8000'
 
-export const apiBaseUrl = `${apiOrigin}/api`
+export const apiBaseUrl = import.meta.env.DEV ? '/api' : `${apiOrigin}/api`
 
 function collectionItems(payload) {
   if (Array.isArray(payload)) return payload
@@ -20,7 +20,7 @@ function collectionItems(payload) {
 }
 
 export async function fetchCollection(component) {
-  const response = await fetch(`${apiBaseUrl}/${component}/`)
+  const response = await fetch(`${apiBaseUrl}/${component}`)
   if (!response.ok) throw new Error(`Unable to load ${component}`)
   return collectionItems(await response.json())
 }
