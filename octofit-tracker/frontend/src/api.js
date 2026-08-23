@@ -20,7 +20,7 @@ function collectionItems(payload) {
 }
 
 export async function fetchCollection(component) {
-  const response = await fetch(`${apiBaseUrl}/${component}`)
+  const response = await fetch(`${apiBaseUrl}/${component}/`)
   if (!response.ok) throw new Error(`Unable to load ${component}`)
   return collectionItems(await response.json())
 }
