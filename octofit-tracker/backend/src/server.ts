@@ -1,4 +1,5 @@
 import express from 'express'
+import cors from 'cors'
 import { connectDatabase } from './config/database.js'
 import activitiesRouter from './routes/activities.js'
 import leaderboardRouter from './routes/leaderboard.js'
@@ -14,6 +15,7 @@ const baseUrl = codespaceName
   : `http://localhost:${port}`
 
 app.use(express.json())
+app.use(cors())
 
 app.use('/api/users', usersRouter)
 app.use('/api/teams', teamsRouter)
