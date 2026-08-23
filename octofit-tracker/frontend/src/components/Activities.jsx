@@ -1,7 +1,7 @@
 import CollectionView from './CollectionView.jsx'
 
 function Activities() {
-  return <CollectionView component="activities" eyebrow="Recent motion" title="Activity feed" description="A living record of every rep, run, and reset" renderItem={(activity) => {
+  return <CollectionView component="activities" endpoint="/api/activities/" eyebrow="Recent motion" title="Activity feed" description="A living record of every rep, run, and reset" renderItem={(activity) => {
     const activityType = activity.type ?? 'Activity'
     const duration = activity.durationMinutes ?? activity.duration ?? 0
     const points = activity.points ?? 0

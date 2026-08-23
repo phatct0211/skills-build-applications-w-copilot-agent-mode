@@ -1,19 +1,19 @@
 import { useEffect, useState } from 'react'
 import { fetchCollection } from '../api.js'
 
-function CollectionView({ component, title, eyebrow, description, renderItem }) {
+function CollectionView({ component, endpoint, title, eyebrow, description, renderItem }) {
   const [items, setItems] = useState([])
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     let active = true
-    fetchCollection(component)
+    fetchCollection(endpoint, component)
       .then((data) => active && setItems(data))
       .catch((requestError) => active && setError(requestError.message))
       .finally(() => active && setLoading(false))
     return () => { active = false }
-  }, [component])
+  }, [component, endpoint])
 
   return (
     <section className="view-section">
